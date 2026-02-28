@@ -1,0 +1,179 @@
+%PDF-1.4
+1 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
+endobj
+2 0 obj
+<<
+/Type /Pages
+/Kids [3 0 R]
+/Count 1
+>>
+endobj
+3 0 obj
+<<
+/Type /Page
+/Parent 2 0 R
+/Resources <<
+/Font <<
+/F1 4 0 R
+/F2 5 0 R
+>>
+>>
+/MediaBox [0 0 612 792]
+/Contents 6 0 R
+>>
+endobj
+4 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica-Bold
+>>
+endobj
+5 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica
+>>
+endobj
+6 0 obj
+<<
+/Length 2100
+>>
+stream
+BT
+/F1 18 Tf
+50 750 Td
+(LABORATORY RESULTS) Tj
+ET
+
+BT
+/F1 14 Tf
+50 720 Td
+(Complete Blood Count \(CBC\)) Tj
+ET
+
+BT
+/F2 10 Tf
+50 690 Td
+(Patient Name: Sarah Mitchell) Tj
+0 -15 Td
+(Date of Birth: June 15, 1985) Tj
+0 -15 Td
+(MRN: CTX-2024-001) Tj
+0 -15 Td
+(Collection Date: February 25, 2026) Tj
+0 -15 Td
+(Report Date: February 25, 2026) Tj
+ET
+
+BT
+/F1 12 Tf
+50 600 Td
+(TEST RESULTS) Tj
+ET
+
+BT
+/F2 10 Tf
+50 575 Td
+(Test Name                    Result      Normal Range    Flag) Tj
+ET
+
+BT
+/F2 10 Tf
+50 555 Td
+(WHITE BLOOD CELLS) Tj
+0 -15 Td
+(WBC Count                    7.2         4.0-11.0 K/uL) Tj
+0 -15 Td
+(Neutrophils                  65%         40-70%) Tj
+0 -15 Td
+(Lymphocytes                  28%         20-40%) Tj
+0 -15 Td
+(Monocytes                    5%          2-8%) Tj
+0 -15 Td
+(Eosinophils                  2%          1-4%) Tj
+ET
+
+BT
+/F2 10 Tf
+50 465 Td
+(RED BLOOD CELLS) Tj
+0 -15 Td
+(RBC Count                    4.5         4.0-5.5 M/uL) Tj
+0 -15 Td
+(Hemoglobin                   11.8        12.0-16.0 g/dL  LOW) Tj
+0 -15 Td
+(Hematocrit                   36%         36-46%) Tj
+0 -15 Td
+(MCV                          88          80-100 fL) Tj
+0 -15 Td
+(MCH                          29          27-33 pg) Tj
+0 -15 Td
+(MCHC                         33          32-36 g/dL) Tj
+ET
+
+BT
+/F2 10 Tf
+50 345 Td
+(PLATELETS) Tj
+0 -15 Td
+(Platelet Count               250         150-400 K/uL) Tj
+ET
+
+BT
+/F1 10 Tf
+50 300 Td
+(CLINICAL SIGNIFICANCE:) Tj
+ET
+
+BT
+/F2 10 Tf
+50 280 Td
+(Hemoglobin slightly below normal range may indicate mild anemia.) Tj
+0 -15 Td
+(Recommend follow-up with physician for iron studies.) Tj
+0 -15 Td
+(All other parameters within normal limits.) Tj
+ET
+
+BT
+/F2 9 Tf
+50 220 Td
+(Performing Laboratory: Cortex Medical Center) Tj
+0 -12 Td
+(CLIA #: 05D2089456) Tj
+0 -12 Td
+(Medical Director: Dr. James Peterson, MD) Tj
+ET
+
+BT
+/F2 8 Tf
+50 50 Td
+(This report has been electronically signed and does not require a handwritten signature.) Tj
+0 -10 Td
+(Page 1 of 1) Tj
+ET
+endstream
+endobj
+xref
+0 7
+0000000000 65535 f
+0000000009 00000 n
+0000000058 00000 n
+0000000115 00000 n
+0000000257 00000 n
+0000000336 00000 n
+0000000410 00000 n
+trailer
+<<
+/Size 7
+/Root 1 0 R
+>>
+startxref
+2562
+%%EOF

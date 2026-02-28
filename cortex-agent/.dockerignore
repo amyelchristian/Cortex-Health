@@ -1,0 +1,24 @@
+# Virtual environments
+cortex_env/
+.venv/
+venv/
+env/
+
+# Python compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Git repository
+.git/
+.gitignore
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Any local data or test files that shouldn't go to production
+# If your actual ML model (.pkl) is inside models/ keep it here.
+# But if it's too big, you may want to fetch it from cloud storage.
+# Currently, assuming 'models/' contains the ~6MB RF model, so we DO NOT ignore 'models/'

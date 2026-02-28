@@ -1,0 +1,213 @@
+%PDF-1.4
+1 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
+endobj
+2 0 obj
+<<
+/Type /Pages
+/Kids [3 0 R]
+/Count 1
+>>
+endobj
+3 0 obj
+<<
+/Type /Page
+/Parent 2 0 R
+/Resources <<
+/Font <<
+/F1 4 0 R
+/F2 5 0 R
+>>
+>>
+/MediaBox [0 0 612 792]
+/Contents 6 0 R
+>>
+endobj
+4 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica-Bold
+>>
+endobj
+5 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica
+>>
+endobj
+6 0 obj
+<<
+/Length 1850
+>>
+stream
+BT
+/F1 20 Tf
+50 750 Td
+(PRESCRIPTION) Tj
+ET
+
+BT
+/F2 10 Tf
+50 715 Td
+(Cortex Medical Center) Tj
+0 -12 Td
+(123 Healthcare Drive, Medical City, MC 12345) Tj
+0 -12 Td
+(Phone: \(555\) 123-4567  |  Fax: \(555\) 123-4568) Tj
+ET
+
+BT
+/F1 12 Tf
+50 665 Td
+(PRESCRIBER INFORMATION:) Tj
+ET
+
+BT
+/F2 10 Tf
+50 645 Td
+(Dr. Amanda Chen, MD) Tj
+0 -15 Td
+(License #: MC-12345-A) Tj
+0 -15 Td
+(DEA #: AC1234563) Tj
+0 -15 Td
+(NPI: 1234567890) Tj
+ET
+
+BT
+/F1 12 Tf
+50 575 Td
+(PATIENT INFORMATION:) Tj
+ET
+
+BT
+/F2 10 Tf
+50 555 Td
+(Name: Sarah Mitchell) Tj
+0 -15 Td
+(Date of Birth: June 15, 1985) Tj
+0 -15 Td
+(Address: 456 Wellness Avenue, Health City, HC 67890) Tj
+0 -15 Td
+(Phone: \(555\) 987-6543) Tj
+ET
+
+BT
+/F1 12 Tf
+50 485 Td
+(DATE: February 26, 2026) Tj
+ET
+
+BT
+/F1 14 Tf
+50 450 Td
+(Rx) Tj
+ET
+
+BT
+/F1 12 Tf
+80 450 Td
+(LISINOPRIL 10mg TABLETS) Tj
+ET
+
+BT
+/F2 11 Tf
+80 430 Td
+(Quantity: 30 tablets) Tj
+0 -18 Td
+(Directions: Take 1 tablet by mouth once daily) Tj
+0 -18 Td
+(Refills: 5) Tj
+0 -18 Td
+(Days Supply: 30) Tj
+ET
+
+BT
+/F1 10 Tf
+50 350 Td
+(INDICATION:) Tj
+ET
+
+BT
+/F2 10 Tf
+50 332 Td
+(Hypertension \(High Blood Pressure\)) Tj
+ET
+
+BT
+/F1 10 Tf
+50 305 Td
+(IMPORTANT INFORMATION:) Tj
+ET
+
+BT
+/F2 9 Tf
+50 287 Td
+(- Take this medication at the same time each day) Tj
+0 -12 Td
+(- Do not stop taking without consulting your doctor) Tj
+0 -12 Td
+(- May cause dizziness - use caution when standing up) Tj
+0 -12 Td
+(- Avoid potassium supplements unless directed by doctor) Tj
+0 -12 Td
+(- Report persistent cough, swelling, or difficulty breathing) Tj
+0 -12 Td
+(- Monitor blood pressure regularly) Tj
+ET
+
+BT
+/F1 10 Tf
+50 205 Td
+(Substitution Permitted) Tj
+400 0 Td
+([ X ] Yes    [   ] No) Tj
+ET
+
+BT
+/F2 10 Tf
+50 170 Td
+(Electronically Prescribed by: Dr. Amanda Chen, MD) Tj
+0 -15 Td
+(Date/Time: February 26, 2026 10:15 AM) Tj
+ET
+
+BT
+/F2 8 Tf
+50 120 Td
+(This is an electronic prescription. Please present to pharmacy.) Tj
+0 -10 Td
+(Prescription valid for 1 year from date issued.) Tj
+ET
+
+BT
+/F2 7 Tf
+50 50 Td
+(DEA Registration: AC1234563  |  State License: MC-12345-A) Tj
+0 -9 Td
+(Prescriber NPI: 1234567890) Tj
+ET
+endstream
+endobj
+xref
+0 7
+0000000000 65535 f
+0000000009 00000 n
+0000000058 00000 n
+0000000115 00000 n
+0000000257 00000 n
+0000000336 00000 n
+0000000410 00000 n
+trailer
+<<
+/Size 7
+/Root 1 0 R
+>>
+startxref
+2312
+%%EOF

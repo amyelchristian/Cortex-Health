@@ -1,0 +1,215 @@
+%PDF-1.4
+1 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
+endobj
+2 0 obj
+<<
+/Type /Pages
+/Kids [3 0 R]
+/Count 1
+>>
+endobj
+3 0 obj
+<<
+/Type /Page
+/Parent 2 0 R
+/Resources <<
+/Font <<
+/F1 4 0 R
+/F2 5 0 R
+>>
+>>
+/MediaBox [0 0 612 792]
+/Contents 6 0 R
+>>
+endobj
+4 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica-Bold
+>>
+endobj
+5 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica
+>>
+endobj
+6 0 obj
+<<
+/Length 2350
+>>
+stream
+BT
+/F1 18 Tf
+50 750 Td
+(CLINICAL NOTE) Tj
+ET
+
+BT
+/F1 14 Tf
+50 720 Td
+(Primary Care Visit) Tj
+ET
+
+BT
+/F2 10 Tf
+50 690 Td
+(Patient: Sarah Mitchell) Tj
+0 -15 Td
+(DOB: June 15, 1985 \(Age: 40\)) Tj
+0 -15 Td
+(MRN: CTX-2024-001) Tj
+0 -15 Td
+(Visit Date: February 26, 2026) Tj
+0 -15 Td
+(Provider: Dr. Amanda Chen, MD) Tj
+ET
+
+BT
+/F1 12 Tf
+50 610 Td
+(CHIEF COMPLAINT:) Tj
+ET
+
+BT
+/F2 10 Tf
+50 590 Td
+(Annual physical exam and follow-up on blood pressure) Tj
+ET
+
+BT
+/F1 12 Tf
+50 565 Td
+(HISTORY OF PRESENT ILLNESS:) Tj
+ET
+
+BT
+/F2 10 Tf
+50 545 Td
+(40-year-old female presents for annual physical. Reports) Tj
+0 -15 Td
+(generally feeling well. Blood pressure has been elevated at) Tj
+0 -15 Td
+(home readings \(135-140/85-90\). Denies chest pain, shortness) Tj
+0 -15 Td
+(of breath, palpitations. Reports mild fatigue.) Tj
+ET
+
+BT
+/F1 12 Tf
+50 475 Td
+(PAST MEDICAL HISTORY:) Tj
+ET
+
+BT
+/F2 10 Tf
+50 455 Td
+(- Prehypertension) Tj
+0 -15 Td
+(- Mild anemia \(iron deficiency\)) Tj
+0 -15 Td
+(- Seasonal allergies) Tj
+ET
+
+BT
+/F1 12 Tf
+50 405 Td
+(MEDICATIONS:) Tj
+ET
+
+BT
+/F2 10 Tf
+50 385 Td
+(- Ferrous sulfate 325mg daily) Tj
+0 -15 Td
+(- Cetirizine 10mg as needed for allergies) Tj
+ET
+
+BT
+/F1 12 Tf
+50 350 Td
+(VITAL SIGNS:) Tj
+ET
+
+BT
+/F2 10 Tf
+50 330 Td
+(BP: 138/88 mmHg  |  HR: 78 bpm  |  Temp: 98.4 F) Tj
+0 -15 Td
+(SpO2: 98%  |  Weight: 145 lbs  |  Height: 5'6") Tj
+ET
+
+BT
+/F1 12 Tf
+50 290 Td
+(PHYSICAL EXAMINATION:) Tj
+ET
+
+BT
+/F2 10 Tf
+50 270 Td
+(General: Alert, oriented, no acute distress) Tj
+0 -15 Td
+(HEENT: Normocephalic, atraumatic. PERRLA. TMs clear.) Tj
+0 -15 Td
+(Cardiovascular: Regular rate and rhythm. No murmurs.) Tj
+0 -15 Td
+(Respiratory: Clear to auscultation bilaterally.) Tj
+0 -15 Td
+(Abdomen: Soft, non-tender, non-distended.) Tj
+0 -15 Td
+(Extremities: No edema. Pulses 2+ throughout.) Tj
+ET
+
+BT
+/F1 12 Tf
+50 165 Td
+(ASSESSMENT & PLAN:) Tj
+ET
+
+BT
+/F2 10 Tf
+50 145 Td
+(1. Prehypertension/Stage 1 Hypertension) Tj
+0 -15 Td
+(   - Start Lisinopril 10mg daily) Tj
+0 -15 Td
+(   - Lifestyle modifications: reduce sodium, increase exercise) Tj
+0 -15 Td
+(   - Recheck BP in 4 weeks) Tj
+0 -20 Td
+(2. Iron deficiency anemia - improving) Tj
+0 -15 Td
+(   - Continue ferrous sulfate) Tj
+0 -15 Td
+(   - Repeat CBC in 3 months) Tj
+0 -20 Td
+(3. Health maintenance) Tj
+0 -15 Td
+(   - Annual labs ordered) Tj
+ET
+endstream
+endobj
+xref
+0 7
+0000000000 65535 f
+0000000009 00000 n
+0000000058 00000 n
+0000000115 00000 n
+0000000257 00000 n
+0000000336 00000 n
+0000000410 00000 n
+trailer
+<<
+/Size 7
+/Root 1 0 R
+>>
+startxref
+2812
+%%EOF

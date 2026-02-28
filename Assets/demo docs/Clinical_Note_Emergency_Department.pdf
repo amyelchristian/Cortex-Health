@@ -1,0 +1,229 @@
+%PDF-1.4
+1 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
+endobj
+2 0 obj
+<<
+/Type /Pages
+/Kids [3 0 R]
+/Count 1
+>>
+endobj
+3 0 obj
+<<
+/Type /Page
+/Parent 2 0 R
+/Resources <<
+/Font <<
+/F1 4 0 R
+/F2 5 0 R
+>>
+>>
+/MediaBox [0 0 612 792]
+/Contents 6 0 R
+>>
+endobj
+4 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica-Bold
+>>
+endobj
+5 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica
+>>
+endobj
+6 0 obj
+<<
+/Length 2200
+>>
+stream
+BT
+/F1 18 Tf
+50 750 Td
+(EMERGENCY DEPARTMENT NOTE) Tj
+ET
+
+BT
+/F2 10 Tf
+50 720 Td
+(Patient: Sarah Mitchell) Tj
+0 -15 Td
+(DOB: June 15, 1985 \(Age: 40\)) Tj
+0 -15 Td
+(MRN: CTX-2024-001) Tj
+0 -15 Td
+(Arrival: February 15, 2026 22:15) Tj
+0 -15 Td
+(Discharge: February 16, 2026 01:30) Tj
+0 -15 Td
+(Provider: Dr. Michael Roberts, MD) Tj
+ET
+
+BT
+/F1 12 Tf
+50 635 Td
+(CHIEF COMPLAINT:) Tj
+ET
+
+BT
+/F2 10 Tf
+50 615 Td
+(Severe headache and nausea) Tj
+ET
+
+BT
+/F1 12 Tf
+50 590 Td
+(HISTORY OF PRESENT ILLNESS:) Tj
+ET
+
+BT
+/F2 10 Tf
+50 570 Td
+(40-year-old female presents with sudden onset severe headache) Tj
+0 -15 Td
+(starting 4 hours ago. Describes as "worst headache of life",) Tj
+0 -15 Td
+(throbbing, frontal. Associated with nausea and photophobia.) Tj
+0 -15 Td
+(No recent trauma. No fever. No vision changes. No neck) Tj
+0 -15 Td
+(stiffness. No focal neurological deficits.) Tj
+ET
+
+BT
+/F1 12 Tf
+50 485 Td
+(TRIAGE VITALS:) Tj
+ET
+
+BT
+/F2 10 Tf
+50 465 Td
+(BP: 165/95 mmHg  |  HR: 95 bpm  |  Temp: 98.6 F) Tj
+0 -15 Td
+(RR: 18/min  |  SpO2: 99% RA  |  Pain: 9/10) Tj
+ET
+
+BT
+/F1 12 Tf
+50 425 Td
+(PHYSICAL EXAMINATION:) Tj
+ET
+
+BT
+/F2 10 Tf
+50 405 Td
+(General: Moderate distress due to pain) Tj
+0 -15 Td
+(HEENT: PERRLA. No papilledema. TMs clear.) Tj
+0 -15 Td
+(Neck: Supple. No meningismus. No lymphadenopathy.) Tj
+0 -15 Td
+(Neurological: Alert and oriented x3. CN II-XII intact.) Tj
+0 -15 Td
+(Motor 5/5 throughout. Sensation intact. DTRs 2+ symmetric.) Tj
+0 -15 Td
+(Negative Kernig and Brudzinski signs.) Tj
+ET
+
+BT
+/F1 12 Tf
+50 315 Td
+(DIAGNOSTIC STUDIES:) Tj
+ET
+
+BT
+/F2 10 Tf
+50 295 Td
+(CT Head without contrast: No acute intracranial abnormality.) Tj
+0 -15 Td
+(No hemorrhage, mass, or midline shift.) Tj
+ET
+
+BT
+/F1 12 Tf
+50 255 Td
+(TREATMENT:) Tj
+ET
+
+BT
+/F2 10 Tf
+50 235 Td
+(- IV access established) Tj
+0 -15 Td
+(- Ondansetron 4mg IV for nausea) Tj
+0 -15 Td
+(- Ketorolac 30mg IV for pain) Tj
+0 -15 Td
+(- Normal saline 1L IV bolus) Tj
+0 -15 Td
+(- Metoclopramide 10mg IV) Tj
+ET
+
+BT
+/F1 12 Tf
+50 160 Td
+(REASSESSMENT:) Tj
+ET
+
+BT
+/F2 10 Tf
+50 140 Td
+(Pain improved to 3/10. Nausea resolved. BP 138/82.) Tj
+0 -15 Td
+(Patient tolerating oral fluids.) Tj
+ET
+
+BT
+/F1 12 Tf
+50 105 Td
+(DIAGNOSIS:) Tj
+ET
+
+BT
+/F2 10 Tf
+50 85 Td
+(Severe migraine headache) Tj
+ET
+
+BT
+/F1 12 Tf
+50 60 Td
+(DISPOSITION:) Tj
+ET
+
+BT
+/F2 10 Tf
+50 40 Td
+(Discharged home in stable condition. Prescriptions provided.) Tj
+0 -12 Td
+(Follow-up with PCP in 1 week. Return precautions discussed.) Tj
+ET
+endstream
+endobj
+xref
+0 7
+0000000000 65535 f
+0000000009 00000 n
+0000000058 00000 n
+0000000115 00000 n
+0000000257 00000 n
+0000000336 00000 n
+0000000410 00000 n
+trailer
+<<
+/Size 7
+/Root 1 0 R
+>>
+startxref
+2662
+%%EOF

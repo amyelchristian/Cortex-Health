@@ -1,0 +1,256 @@
+# ════════════════════════════════════════════════════════════
+# CORTEX v3.0 - Git Ignore Configuration
+# ════════════════════════════════════════════════════════════
+
+# ─────────────────────────────────────────────────────────────
+# Python
+# ─────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+cortex_env/
+.venv
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath
+*.sage.py
+
+# Spyder
+.spyderproject
+.spyproject
+
+# Rope
+.ropeproject
+
+# mkdocs
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre
+.pyre/
+
+# ─────────────────────────────────────────────────────────────
+# Node.js / React / Vite
+# ─────────────────────────────────────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Build outputs
+dist/
+dist-ssr/
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ─────────────────────────────────────────────────────────────
+# Environment Variables (CRITICAL - Never commit!)
+# ─────────────────────────────────────────────────────────────
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+
+# Firebase
+.firebase/
+.firebaserc
+
+# ─────────────────────────────────────────────────────────────
+# Google Cloud Platform & Credentials (CRITICAL - Never commit!)
+# ─────────────────────────────────────────────────────────────
+service-account.json
+service-account-key.json
+serviceAccountKey.json
+*-credentials.json
+gcp-*.json
+**/serviceAccountKey.json
+**/service-account*.json
+
+# ─────────────────────────────────────────────────────────────
+# ML Model Artifacts (Large Files - Store in Git LFS or Cloud)
+# ─────────────────────────────────────────────────────────────
+# Large model files (>100MB) - GitHub file size limit
+*.pkl
+*.pickle
+*.h5
+*.hdf5
+best_model_*.pkl
+model_*.pkl
+*_model.pkl
+scaler_*.pkl
+feature_names_*.pkl
+
+# Model checkpoints
+checkpoints/
+*.ckpt
+cortex_model_v3/
+
+# ─────────────────────────────────────────────────────────────
+# Data (Large datasets - Use Git LFS or external storage)
+# ─────────────────────────────────────────────────────────────
+# MIMIC-IV data is large and private - DO NOT commit
+Data/
+data/
+*.csv
+*.parquet
+*.psv
+*.gz
+*.zip
+
+# Specific data directories to exclude
+Data/archive/
+Data/mimic-*/
+
+# ─────────────────────────────────────────────────────────────
+# Logs
+# ─────────────────────────────────────────────────────────────
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ─────────────────────────────────────────────────────────────
+# OS
+# ─────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ─────────────────────────────────────────────────────────────
+# Temporary files
+# ─────────────────────────────────────────────────────────────
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# ─────────────────────────────────────────────────────────────
+# IDE
+# ─────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.code-workspace
+
+# ─────────────────────────────────────────────────────────────
+# Docker (if using)
+# ─────────────────────────────────────────────────────────────
+docker-compose.override.yml
+
+# ─────────────────────────────────────────────────────────────
+# MacOS
+# ─────────────────────────────────────────────────────────────
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# ─────────────────────────────────────────────────────────────
+# Project Specific
+# ─────────────────────────────────────────────────────────────
+# Evaluation outputs
+evaluation_results/
+metrics/
+
+# Backup files
+*.bak
+*.backup
+*_backup/
+
+# Test outputs
+test_output/
+screenshots/
+
+# ─────────────────────────────────────────────────────────────
+# Package Lock Files (Optional - uncomment if needed)
+# ─────────────────────────────────────────────────────────────
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml

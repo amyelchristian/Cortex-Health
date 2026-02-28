@@ -1,0 +1,21 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // OTP records — Cloud Functions only, no client access
+    match /otpVerifications/{docId} {
+      allow read, write: if false;
+    }
+
+    // Mail collection — Cloud Functions only
+    match /mail/{docId} {
+      allow read, write: if false;
+    }
+
+    // Dashboard data — only verified, logged-in users
+    match /users/{userId}/{document=**} {
+      allow read, write: if request.auth != null
+        && request.auth.uid == userId;
+    }
+  }
+}

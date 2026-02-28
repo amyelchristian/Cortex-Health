@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/cortex-logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cortex</title>
+
+  <!-- Prevent flash of white before BG image loads — use same color as bg.jpg fallback -->
+  <style>
+    html,
+    body {
+      background-color: #2d4a3e;
+      margin: 0;
+      padding: 0;
+    }
+
+    #root {
+      background: transparent;
+    }
+  </style>
+
+  <!-- Preconnect to Google Fonts for faster DNS + TLS negotiation -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Load fonts with font-display=swap so text renders immediately in fallback font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
+</html>

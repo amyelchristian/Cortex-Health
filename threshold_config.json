@@ -1,0 +1,84 @@
+{
+  "optimal_threshold": 0.15,
+  "default_threshold": 0.5,
+  "high_risk_class_index": 2,
+  "class_mapping": {
+    "0": "Low Risk",
+    "1": "Medium Risk",
+    "2": "High Risk"
+  },
+  "threshold_results": [
+    {
+      "threshold": 0.15,
+      "acc": 0.9998299006336201,
+      "hr_recall": 1.0,
+      "hr_precision": 1.0,
+      "med_recall": 0.9995191177413495,
+      "low_recall": 0.99998151104099,
+      "meets_all": true
+    },
+    {
+      "threshold": 0.2,
+      "acc": 0.9998299006336201,
+      "hr_recall": 1.0,
+      "hr_precision": 1.0,
+      "med_recall": 0.9995191177413495,
+      "low_recall": 0.99998151104099,
+      "meets_all": true
+    },
+    {
+      "threshold": 0.25,
+      "acc": 0.9998299006336201,
+      "hr_recall": 1.0,
+      "hr_precision": 1.0,
+      "med_recall": 0.9995191177413495,
+      "low_recall": 0.99998151104099,
+      "meets_all": true
+    },
+    {
+      "threshold": 0.3,
+      "acc": 0.9998299006336201,
+      "hr_recall": 1.0,
+      "hr_precision": 1.0,
+      "med_recall": 0.9995191177413495,
+      "low_recall": 0.99998151104099,
+      "meets_all": true
+    },
+    {
+      "threshold": 0.35,
+      "acc": 0.9998299006336201,
+      "hr_recall": 1.0,
+      "hr_precision": 1.0,
+      "med_recall": 0.9995191177413495,
+      "low_recall": 0.99998151104099,
+      "meets_all": true
+    },
+    {
+      "threshold": 0.4,
+      "acc": 0.9998299006336201,
+      "hr_recall": 1.0,
+      "hr_precision": 1.0,
+      "med_recall": 0.9995191177413495,
+      "low_recall": 0.99998151104099,
+      "meets_all": true
+    },
+    {
+      "threshold": 0.45,
+      "acc": 0.9998299006336201,
+      "hr_recall": 1.0,
+      "hr_precision": 1.0,
+      "med_recall": 0.9995191177413495,
+      "low_recall": 0.99998151104099,
+      "meets_all": true
+    },
+    {
+      "threshold": 0.5,
+      "acc": 0.9998299006336201,
+      "hr_recall": 1.0,
+      "hr_precision": 1.0,
+      "med_recall": 0.9995191177413495,
+      "low_recall": 0.99998151104099,
+      "meets_all": true
+    }
+  ]
+}

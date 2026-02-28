@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.git
+.gitignore
+*.md
+plots/
+evaluation_report.txt
+test_results_summary.json
+train_model.py
+model_training.py
+model_evaluation.py
+data_processing.py
+run_evaluation.py
+test_model.py
