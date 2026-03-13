@@ -83,10 +83,13 @@ export default function DocumentsTab({ displayName, documents: propDocs }) {
     const [searchQuery, setSearchQuery] = useState('');
     const [fetchedDocs, setFetchedDocs] = useState([]);
 
+    // Grab the soft-deleted list from AuthContext
+    const deletedDocIds = currentUser?.firestoreData?.deletedDocIds || [];
+
     useEffect(() => {
         const fetchDocs = async () => {
             try {
-                const res = await axios.get(`http://localhost:8000/documents?user_id=${userId}`);
+                const res = await axios.get(`https://cortex-agent-472595500035.us-central1.run.app/documents?user_id=${userId}`);
                 if (res.data && res.data.documents) {
                     setFetchedDocs(res.data.documents);
                 }
@@ -97,7 +100,8 @@ export default function DocumentsTab({ displayName, documents: propDocs }) {
         fetchDocs();
     }, [userId]);
 
-    const safeDocs = fetchedDocs.length > 0 ? fetchedDocs : (propDocs || []);
+    const safeDocs = (fetchedDocs.length > 0 ? fetchedDocs : (propDocs || []))
+        .filter(d => !deletedDocIds.includes(d.id));
 
     const filtered = useMemo(() => safeDocs.filter(d => {
         const matchCat = filter === 'All' || d.category === filter;
@@ -339,7 +343,7 @@ export default function DocumentsTab({ displayName, documents: propDocs }) {
                             <div className="mt-7 pt-7 border-t border-white/10">
                                 <button onClick={async () => {
                                     try {
-                                        await axios.post('http://localhost:8000/documents/share', { user_id: userId, doc_id: selectedDoc.id });
+                                        await axios.post('https://cortex-agent-472595500035.us-central1.run.app/documents/share', { user_id: userId, doc_id: selectedDoc.id });
                                         setFetchedDocs(prev => prev.map(doc => doc.id === selectedDoc.id ? { ...doc, isShared: true } : doc));
                                         alert("Document securely shared with your registered care team!");
                                     } catch (err) {

@@ -63,10 +63,10 @@ export default function DatabaseTab({ displayName, database, documents }) {
     const [isFetchingLog, setIsFetchingLog] = useState('idle');
     const [isUploading, setIsUploading] = useState(false);
     const [fetchedDocs, setFetchedDocs] = useState([]);
-    const [deletedDocIds, setDeletedDocIds] = useState([]);
     const fileInputRef = useRef(null);
-    const { currentUser } = useAuth();
+    const { currentUser, deleteDocumentLocally } = useAuth();
     const userId = currentUser?.uid || `user_${Math.floor(Math.random() * 10000)}`;
+    const deletedDocIds = currentUser?.firestoreData?.deletedDocIds || [];
 
     const fetchDocs = async () => {
         try {
@@ -117,9 +117,14 @@ export default function DatabaseTab({ displayName, database, documents }) {
             await axios.delete(`https://cortex-agent-472595500035.us-central1.run.app/documents/${docId}?user_id=${userId}`);
         } catch (error) {
             console.error('Error deleting document from backend:', error);
+            // Even if backend fails (e.g., endpoint not deployed), we still run soft delete
         }
-        
-        setDeletedDocIds(prev => [...prev, docId]);
+
+        try {
+            await deleteDocumentLocally(docId);
+        } catch (error) {
+            console.error('Failed to update local soft delete state:', error);
+        }
     };
 
     const safeStats = database?.stats || [];
@@ -280,7 +285,7 @@ export default function DatabaseTab({ displayName, database, documents }) {
                                         <button className="w-9 h-9 flex items-center justify-center rounded-xl bg-white border border-gray-100 text-gray-500 hover:text-info-main hover:border-info-main/30 shadow-sm transition-all duration-200">
                                             <Download size={16} />
                                         </button>
-                                        <button 
+                                        <button
                                             onClick={() => handleDeleteDocument(doc.id, doc.title)}
                                             className="w-9 h-9 flex items-center justify-center rounded-xl bg-white border border-gray-100 text-gray-500 hover:text-red-500 hover:border-red-500/30 shadow-sm transition-all duration-200"
                                             title="Delete Document"

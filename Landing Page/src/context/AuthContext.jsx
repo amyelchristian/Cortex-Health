@@ -11,8 +11,9 @@ import {
     sendPasswordResetEmail
 } from 'firebase/auth';
 import { auth, db } from '../lib/firebase';
-import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { doc, setDoc, getDoc, onSnapshot } from 'firebase/firestore';
 import { getFunctions, httpsCallable } from 'firebase/functions';
+import { generateRealDashboardData, generateUserDashboardData } from '../lib/defaultData';
 
 const AuthContext = createContext();
 
@@ -47,7 +48,6 @@ export function AuthProvider({ children }) {
             );
         }
 
-        const { generateUserDashboardData } = await import('../lib/defaultData');
         const defaultDashboardData = generateUserDashboardData(name, email);
 
         await setDoc(doc(db, 'users', user.uid), {
@@ -90,52 +90,69 @@ export function AuthProvider({ children }) {
     }
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, async (user) => {
+        let unsubscribeDoc = null;
+
+        const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
             if (user) {
-                // Immediately set auth user so UI isn't blocked
-                setCurrentUser((prev) => prev ?? user);
+                // IMPORTANT: Only use cached data if the UID matches. 
+                // Otherwise, wait for Firestore to provide the correct data for this specific user.
+                setCurrentUser((prev) => (prev && prev.uid === user.uid) ? prev : user);
                 setLoading(false);
 
-                // Fetch extra Firestore data in the BACKGROUND (non-blocking)
-                try {
-                    const timeoutPromise = new Promise((_, reject) =>
-                        setTimeout(() => reject(new Error('Firestore timeout')), 1500)
-                    );
-                    const docSnap = await Promise.race([
-                        getDoc(doc(db, 'users', user.uid)),
-                        timeoutPromise,
-                    ]);
-                    if (docSnap && docSnap.exists()) {
-                        const firestoreData = docSnap.data();
-                        const enrichedUser = Object.assign(Object.create(Object.getPrototypeOf(user)), user, { firestoreData });
-                        setCurrentUser(enrichedUser);
-                        // Cache minimal info for instant restore next reload
+                // Set up real-time listener for the user's Firestore document
+                const userRef = doc(db, 'users', user.uid);
+
+                // Close any existing listener
+                if (unsubscribeDoc) unsubscribeDoc();
+
+                unsubscribeDoc = onSnapshot(userRef, (docSnap) => {
+                    const firestoreData = docSnap.exists() ? docSnap.data() : { assessments: [] };
+
+                    setCurrentUser(prev => {
+                        // If no previous user or different UID, start fresh
+                        const baseUser = (prev && prev.uid === user.uid) ? prev : user;
+
+                        // Merge logic: ensure we don't overwrite if local state is ahead (more assessments)
+                        const localAssessments = prev?.firestoreData?.assessments || [];
+                        const remoteAssessments = firestoreData?.assessments || [];
+
+                        const mergedFirestoreData = {
+                            ...firestoreData,
+                            assessments: localAssessments.length > remoteAssessments.length
+                                ? localAssessments : remoteAssessments
+                        };
+
+                        const enrichedUser = Object.assign(
+                            Object.create(Object.getPrototypeOf(baseUser)),
+                            baseUser,
+                            { firestoreData: mergedFirestoreData }
+                        );
+
+                        // Sync to localStorage for persistence
                         localStorage.setItem('authUser', JSON.stringify({
                             uid: user.uid,
                             email: user.email,
                             displayName: user.displayName,
-                            firestoreData,
+                            firestoreData: mergedFirestoreData,
                         }));
-                    } else {
-                        setCurrentUser(user);
-                        localStorage.setItem('authUser', JSON.stringify({
-                            uid: user.uid,
-                            email: user.email,
-                            displayName: user.displayName,
-                        }));
-                    }
-                } catch (err) {
-                    console.warn('Firestore background fetch failed:', err.message);
-                    setCurrentUser(user);
-                }
+
+                        return enrichedUser;
+                    });
+                }, (error) => {
+                    console.error("Firestore listener error:", error);
+                });
             } else {
+                if (unsubscribeDoc) unsubscribeDoc();
                 localStorage.removeItem('authUser');
                 setCurrentUser(null);
                 setLoading(false);
             }
         });
 
-        return unsubscribe;
+        return () => {
+            unsubscribeAuth();
+            if (unsubscribeDoc) unsubscribeDoc();
+        };
     }, []);
 
     async function saveAssessment(assessmentData) {
@@ -151,25 +168,36 @@ export function AuthProvider({ children }) {
             // Add new assessment
             assessments.unshift(assessmentData);
 
-            // Generate real dashboard data
-            const { generateRealDashboardData } = await import('../lib/defaultData');
-            const dashboardData = generateRealDashboardData(currentUser, assessmentData, assessments);
-
             // Update Firestore
             await setDoc(userRef, {
                 ...userDoc,
-                assessments,
-                dashboardData
+                assessments
             }, { merge: true });
 
+            // Build new firestoreData safely
+            const prevFirestore = currentUser.firestoreData || userDoc || {};
+            const newFirestoreData = {
+                ...prevFirestore,
+                assessments
+            };
+
             // Update local state instantly for UI
-            setCurrentUser(prev => ({
-                ...prev,
-                firestoreData: {
-                    ...prev.firestoreData,
-                    assessments,
-                    dashboardData
-                }
+            setCurrentUser(prev => {
+                const baseUser = prev || currentUser;
+                const enriched = Object.assign(
+                    Object.create(Object.getPrototypeOf(baseUser)),
+                    baseUser,
+                    { firestoreData: newFirestoreData }
+                );
+                return enriched;
+            });
+
+            // Persist to localStorage so a page refresh doesn't lose the data
+            localStorage.setItem('authUser', JSON.stringify({
+                uid: currentUser.uid,
+                email: currentUser.email,
+                displayName: currentUser.displayName,
+                firestoreData: newFirestoreData,
             }));
 
         } catch (error) {
@@ -228,6 +256,41 @@ export function AuthProvider({ children }) {
         }
     }
 
+    async function deleteDocumentLocally(docId) {
+        if (!currentUser) return;
+        const userRef = doc(db, 'users', currentUser.uid);
+
+        try {
+            // Keep deleted IDs in the user document
+            const currentDeleted = currentUser.firestoreData?.deletedDocIds || [];
+            if (currentDeleted.includes(docId)) return; // Already deleted
+
+            const newDeleted = [...currentDeleted, docId];
+
+            await setDoc(userRef, { deletedDocIds: newDeleted }, { merge: true });
+
+            const newFirestoreData = {
+                ...currentUser.firestoreData,
+                deletedDocIds: newDeleted
+            };
+
+            const enrichedUser = Object.assign(Object.create(Object.getPrototypeOf(currentUser)), currentUser, {
+                firestoreData: newFirestoreData
+            });
+
+            setCurrentUser(enrichedUser);
+
+            localStorage.setItem('authUser', JSON.stringify({
+                ...JSON.parse(localStorage.getItem('authUser') || '{}'),
+                firestoreData: newFirestoreData,
+            }));
+
+        } catch (error) {
+            console.error('Failed to soft-delete document:', error);
+            throw error;
+        }
+    }
+
     const value = {
         currentUser,
         loading,
@@ -238,6 +301,7 @@ export function AuthProvider({ children }) {
         verifyOTP,
         saveAssessment,
         updateUserProfile,
+        deleteDocumentLocally,
         resetPassword,
     };
 
