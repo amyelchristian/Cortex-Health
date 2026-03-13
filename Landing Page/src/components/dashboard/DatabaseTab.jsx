@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Database, ShieldCheck, Activity, Clock, FileText, Download, Lock, CheckCircle2, Search, Fingerprint, AlertCircle, UploadCloud, Server, Key, EyeOff } from 'lucide-react';
+import { Database, ShieldCheck, Activity, Clock, FileText, Download, Lock, CheckCircle2, Search, Fingerprint, AlertCircle, UploadCloud, Server, Key, EyeOff, Trash2 } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
@@ -63,13 +63,14 @@ export default function DatabaseTab({ displayName, database, documents }) {
     const [isFetchingLog, setIsFetchingLog] = useState('idle');
     const [isUploading, setIsUploading] = useState(false);
     const [fetchedDocs, setFetchedDocs] = useState([]);
+    const [deletedDocIds, setDeletedDocIds] = useState([]);
     const fileInputRef = useRef(null);
     const { currentUser } = useAuth();
     const userId = currentUser?.uid || `user_${Math.floor(Math.random() * 10000)}`;
 
     const fetchDocs = async () => {
         try {
-            const res = await axios.get(`http://localhost:8000/documents?user_id=${userId}`);
+            const res = await axios.get(`https://cortex-agent-472595500035.us-central1.run.app/documents?user_id=${userId}`);
             if (res.data && res.data.documents) {
                 setFetchedDocs(res.data.documents);
             }
@@ -93,7 +94,7 @@ export default function DatabaseTab({ displayName, database, documents }) {
                 formData.append('user_id', userId);
                 formData.append('file', file);
 
-                await axios.post('http://localhost:8000/upload-document', formData, {
+                await axios.post('https://cortex-agent-472595500035.us-central1.run.app/upload-document', formData, {
                     headers: { 'Content-Type': 'multipart/form-data' }
                 });
             }
@@ -109,9 +110,21 @@ export default function DatabaseTab({ displayName, database, documents }) {
         }
     };
 
+    const handleDeleteDocument = async (docId, fileName) => {
+        if (!window.confirm(`Are you sure you want to delete "${fileName}"?`)) return;
+
+        try {
+            await axios.delete(`https://cortex-agent-472595500035.us-central1.run.app/documents/${docId}?user_id=${userId}`);
+        } catch (error) {
+            console.error('Error deleting document from backend:', error);
+        }
+        
+        setDeletedDocIds(prev => [...prev, docId]);
+    };
+
     const safeStats = database?.stats || [];
     const safeHistory = database?.history || [];
-    const safeDocs = fetchedDocs.length > 0 ? fetchedDocs : (documents || []);
+    const safeDocs = (fetchedDocs.length > 0 ? fetchedDocs : (documents || [])).filter(doc => !deletedDocIds.includes(doc.id));
 
     const getIcon = (type) => {
         switch (type) {
@@ -266,6 +279,13 @@ export default function DatabaseTab({ displayName, database, documents }) {
                                         </div>
                                         <button className="w-9 h-9 flex items-center justify-center rounded-xl bg-white border border-gray-100 text-gray-500 hover:text-info-main hover:border-info-main/30 shadow-sm transition-all duration-200">
                                             <Download size={16} />
+                                        </button>
+                                        <button 
+                                            onClick={() => handleDeleteDocument(doc.id, doc.title)}
+                                            className="w-9 h-9 flex items-center justify-center rounded-xl bg-white border border-gray-100 text-gray-500 hover:text-red-500 hover:border-red-500/30 shadow-sm transition-all duration-200"
+                                            title="Delete Document"
+                                        >
+                                            <Trash2 size={16} />
                                         </button>
                                     </div>
                                 </div>
