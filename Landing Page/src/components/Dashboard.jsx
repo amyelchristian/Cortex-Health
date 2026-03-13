@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import axios from 'axios';
 import { generateRealDashboardData } from '../lib/defaultData';
 import TopNav from './dashboard/TopNav';
 
@@ -130,6 +131,26 @@ export default function Dashboard() {
         catch (e) { console.error('Logout failed:', e); }
     };
 
+    // ── Pre-fetch Documents for Analytics Score ──
+    const [fetchedDocs, setFetchedDocs] = useState([]);
+
+    useEffect(() => {
+        if (!currentUser?.uid) return;
+        const fetchDocs = async () => {
+            try {
+                // To keep this non-blocking and fast, we just grab documents 
+                // to see if we have ANY data when a vitals assessment is missing
+                const res = await axios.get(`https://cortex-agent-472595500035.us-central1.run.app/documents?user_id=${currentUser.uid}`);
+                if (res.data && res.data.documents) {
+                    setFetchedDocs(res.data.documents);
+                }
+            } catch (err) {
+                console.error("Dashboard Failed to fetch documents for analytics fallback:", err);
+            }
+        };
+        fetchDocs();
+    }, [currentUser?.uid]);
+
     // ── Derive dashboard data from AuthContext (already fetched — no duplicate request) ──
     const dashboardData = useMemo(() => {
         const firestoreData = currentUser?.firestoreData;
@@ -139,9 +160,9 @@ export default function Dashboard() {
         const assessments = firestoreData?.assessments || [];
         const latestAssessment = assessments[0] || null;
 
-        return generateRealDashboardData(currentUser, latestAssessment, assessments);
+        return generateRealDashboardData(currentUser, latestAssessment, assessments, fetchedDocs);
 
-    }, [currentUser]);
+    }, [currentUser, fetchedDocs]);
 
     // ── Derive display name ──
     const displayName = useMemo(() => {
