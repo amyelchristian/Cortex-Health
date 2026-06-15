@@ -2,6 +2,8 @@
 
 CORTEX Health is an AI-assisted clinical risk assessment project for patient deterioration monitoring. The repository combines a React/Firebase patient dashboard, a FastAPI agent backend, and Python machine-learning pipelines for training and evaluating clinical risk models.
 
+[Live App](https://cortex-health-app.vercel.app)
+
 > This project is for research, prototyping, and hackathon/demo use. It is not a substitute for clinical judgment or a certified medical device.
 
 ## What Is Inside
@@ -152,6 +154,7 @@ uvicorn api.main:app --reload --port 8000
 
 ## Deployment Notes
 
+- Live Vercel app: https://cortex-health-app.vercel.app
 - The frontend includes Firebase Hosting, Vercel, and Firebase Functions configuration files.
 - The backend includes Dockerfiles for container-based deployment.
 - Runtime secrets should be configured in the hosting platform, not committed to the repository.
