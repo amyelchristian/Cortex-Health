@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import { Shield, Brain, Activity } from 'lucide-react';
-import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
-
-const API_URL = 'http://localhost:8000';
+import { predictRisk } from '../../lib/cortexApi';
 
 export default function VitalAssessmentTab() {
-    const { currentUser } = useAuth();
+    const { currentUser, saveAssessment } = useAuth();
     const [userId] = useState(() => currentUser?.uid || `user_${Math.floor(Math.random() * 10000)}`);
 
-    // Vitals State
+    // Vitals State (Internal keys mapped to model)
     const [vitals, setVitals] = useState({
         hr: '', spo2: '', sys_bp: '', dia_bp: '', temp: '', rr: ''
     });
@@ -21,24 +19,42 @@ export default function VitalAssessmentTab() {
         e.preventDefault();
         setIsTyping(true);
         try {
-            // Convert empty strings to default normal values for scaffolding
-            const payload = {
-                hr: parseFloat(vitals.hr) || 75,
-                spo2: parseFloat(vitals.spo2) || 98,
-                sys_bp: parseFloat(vitals.sys_bp) || 120,
-                dia_bp: parseFloat(vitals.dia_bp) || 80,
-                temp: parseFloat(vitals.temp) || 98.6,
-                rr: parseFloat(vitals.rr) || 16
+            // Unified assessment data object (Matches AssessmentForm's format)
+            const assessmentData = {
+                timestamp: new Date().toISOString(),
+                patient: currentUser?.displayName || 'User',
+                vitals: {
+                    heartRate: parseFloat(vitals.hr) || 75,
+                    spo2: parseFloat(vitals.spo2) || 98,
+                    systolicBP: parseFloat(vitals.sys_bp) || 120,
+                    diastolicBP: parseFloat(vitals.dia_bp) || 80,
+                    temperature: parseFloat(vitals.temp) || 98.6,
+                    respiratoryRate: parseFloat(vitals.rr) || 16
+                },
+                symptoms: [],
+                medicalHistory: []
             };
 
-            const res = await axios.post(`${API_URL}/assessment`, {
-                user_id: userId,
-                vitals: payload
-            });
+            // Call the healthy Asia-South1 API via cortexApi.js helper
+            const result = await predictRisk(assessmentData);
 
-            setAssessmentResult(res.data.data);
+            // Format for local UI display
+            const formattedResult = {
+                prediction: {
+                    risk_level: result.risk_category,
+                    probabilities: result.probabilities
+                },
+                explanation: result.safety_override ? result.override_reason : "Prediction complete via Random Forest model."
+            };
+
+            setAssessmentResult(formattedResult);
+
+            // SAVE to Firestore and Update Global Dashboard State
+            await saveAssessment({ ...assessmentData, prediction: result });
+
         } catch (err) {
-            alert("Failed to submit assessment to local FastAPI server.");
+            console.error("Vital Assessment Error:", err);
+            alert("Failed to submit assessment: " + (err.message || "Unknown error"));
         } finally {
             setIsTyping(false);
         }
@@ -119,8 +135,8 @@ export default function VitalAssessmentTab() {
                                 <div className="mb-6 flex items-center justify-between">
                                     <h3 className="font-outfit font-bold text-xl text-[#111827]">ML Prediction</h3>
                                     <div className={`px-4 py-1.5 rounded-full border text-sm font-bold tracking-wider uppercase ${assessmentResult.prediction.risk_level === 'High' ? 'bg-[#FEE2E2] border-[#EF4A4A]/20 text-[#EF4A4A]' :
-                                            assessmentResult.prediction.risk_level === 'Medium' ? 'bg-[#FEF3C7] border-[#F68E0B]/20 text-[#F68E0B]' :
-                                                'bg-[#D1FAE5] border-[#109981]/20 text-[#109981]'
+                                        assessmentResult.prediction.risk_level === 'Medium' ? 'bg-[#FEF3C7] border-[#F68E0B]/20 text-[#F68E0B]' :
+                                            'bg-[#D1FAE5] border-[#109981]/20 text-[#109981]'
                                         }`}>
                                         {assessmentResult.prediction.risk_level} Risk
                                     </div>

@@ -143,7 +143,8 @@ If the user asks you to check or explain their latest assessment, but NO assessm
 
 class CortexGeminiClient:
     def __init__(self):
-        self.model = 'meta-llama/llama-3.3-70b-instruct:free'
+        self.model = 'meta/llama-3.3-70b-instruct'
+        self.fallback_model = 'meta/llama-3.1-8b-instruct'
         self.client = client
     
     def _format_history_for_openai(self, history: list) -> list:
@@ -174,7 +175,7 @@ class CortexGeminiClient:
             # If the specific free model fails (500, 429, etc), seamlessly fallback to the auto-router
             try:
                 response = self.client.chat.completions.create(
-                    model='openrouter/free',
+                    model=self.fallback_model,
                     messages=messages
                 )
                 return response.choices[0].message.content
@@ -195,7 +196,7 @@ class CortexGeminiClient:
         except Exception as e:
             try:
                 response = self.client.chat.completions.create(
-                    model='openrouter/free',
+                    model=self.fallback_model,
                     messages=messages
                 )
                 return response.choices[0].message.content
@@ -204,7 +205,7 @@ class CortexGeminiClient:
 
     def analyze_document(self, file_content: bytes, mime_type: str, filename: str) -> dict:
         try:
-            # We enforce text processing for max compatibility across all OpenRouter free models
+            # We enforce text processing for max compatibility across all NVIDIA NIM models
             prompt = f"""
             System Persona & Instructions:
             {SYSTEM_PROMPT}
@@ -249,7 +250,7 @@ class CortexGeminiClient:
         except Exception as e:
             try:
                 response = self.client.chat.completions.create(
-                    model='openrouter/free',
+                    model=self.fallback_model,
                     messages=messages
                 )
                 res_text = response.choices[0].message.content
@@ -259,6 +260,6 @@ class CortexGeminiClient:
                     res_text = res_text[:-3]
                 return res_text.strip()
             except Exception as fallback_e:
-                return f"{{\"document_type\": \"Unknown\", \"summary\": \"OpenRouter API Error: {str(fallback_e)}\", \"key_findings\": [\"Failed to process document format\"]}}"
+                return f"{{\"document_type\": \"Unknown\", \"summary\": \"NVIDIA API Error: {str(fallback_e)}\", \"key_findings\": [\"Failed to process document format\"]}}"
 
 gemini_client = CortexGeminiClient()

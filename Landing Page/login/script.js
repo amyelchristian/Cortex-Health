@@ -44,7 +44,7 @@ loginForm.addEventListener('submit', async (e) => {
 
         // Redirect to React dashboard
         setTimeout(() => {
-            window.location.href = 'http://localhost:5173/dashboard';
+            window.location.href = '/dashboard';
         }, 1000);
 
     } catch (error) {
@@ -106,7 +106,7 @@ googleBtn.addEventListener('click', async () => {
         const btnText = loginBtn.querySelector('.btn-text');
         btnText.textContent = 'Welcome!';
         setTimeout(() => {
-            window.location.href = 'http://localhost:5173/dashboard';
+            window.location.href = '/dashboard';
         }, 1000);
     } catch (error) {
         if (error.code !== 'auth/popup-closed-by-user') {

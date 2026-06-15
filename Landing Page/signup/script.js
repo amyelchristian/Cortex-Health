@@ -52,13 +52,16 @@ loginForm.addEventListener('submit', async (e) => {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
-        // 2. Save user profile to Firestore in the background (non-blocking)
-        // This won't prevent sign-up from succeeding even if Firestore has issues
-        setDoc(doc(db, "users", user.uid), {
+        // 2. Save user profile to Firestore (MUST complete before redirect)
+        await setDoc(doc(db, "users", user.uid), {
+            uid: user.uid,
             fullName: name,
+            name: name,
             email: email,
-            createdAt: new Date().toISOString()
-        }).catch(err => console.warn("Firestore profile save failed (non-critical):", err));
+            createdAt: new Date().toISOString(),
+            otpVerified: true,
+            assessments: []
+        });
 
         // Show success feedback
         loginBtn.classList.remove('loading');
@@ -68,7 +71,7 @@ loginForm.addEventListener('submit', async (e) => {
 
         // Redirect to React Dashboard
         setTimeout(() => {
-            window.location.href = 'http://localhost:5173/dashboard';
+            window.location.href = '/dashboard';
         }, 1500);
 
     } catch (error) {
@@ -182,18 +185,22 @@ googleBtn.addEventListener('click', async () => {
         const result = await signInWithPopup(auth, googleProvider);
         const user = result.user;
 
-        // Save profile to Firestore in the background
-        setDoc(doc(db, "users", user.uid), {
+        // Save profile to Firestore (MUST complete before redirect)
+        await setDoc(doc(db, "users", user.uid), {
+            uid: user.uid,
             fullName: user.displayName || '',
+            name: user.displayName || '',
             email: user.email,
-            createdAt: new Date().toISOString()
-        }, { merge: true }).catch(err => console.warn("Firestore save failed:", err));
+            createdAt: new Date().toISOString(),
+            otpVerified: true,
+            assessments: []
+        }, { merge: true });
 
         loginBtn.classList.add('success');
         const btnText = loginBtn.querySelector('.btn-text');
         btnText.textContent = 'Account Created!';
         setTimeout(() => {
-            window.location.href = 'http://localhost:5173/dashboard';
+            window.location.href = '/dashboard';
         }, 1000);
     } catch (error) {
         if (error.code !== 'auth/popup-closed-by-user') {

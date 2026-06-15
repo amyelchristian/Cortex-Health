@@ -44,9 +44,10 @@ const SYMPTOMS = [
    MEDICAL HISTORY CONFIG
    ───────────────────────────────────────────────── */
 const MEDICAL_HISTORY = [
-    'Diabetes', 'Hypertension', 'Heart Disease', 'COPD / Asthma',
-    'Kidney Disease', 'Liver Disease', 'Cancer', 'Immunocompromised',
-    'Stroke History', 'Smoking',
+    'Diabetes', 'Pre-Diabetic', 'Hypertension', 'High Blood Pressure', 'Low Blood Pressure',
+    'Heart Disease', 'COPD / Asthma', 'Kidney Disease', 'Liver Disease', 'Cancer',
+    'Immunocompromised', 'Stroke History', 'Smoking', 'PCOS', 'Thyroid', 'Migraine', 'AIDS',
+    'PCOD', 'Down Syndrome', 'Myopia', 'High Cholesterol', 'Obesity', 'Alzheimer', 'Genetic Disorder'
 ];
 
 /* ── Collapsible Section Header ── */

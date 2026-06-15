@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
-import { X, User, Palette, ShieldCheck, Mail, Send, Loader2, CheckCircle2, Calendar, Activity, Droplet } from 'lucide-react';
+import { X, User, Palette, ShieldCheck, Mail, Send, Loader2, CheckCircle2, Calendar, Activity, Droplet, LogOut } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
 /* ── Design Palette ── */
@@ -18,7 +18,16 @@ export default function EditProfileForm({ onClose, onUpdate, currentName, curren
     const [submitting, setSubmitting] = useState(false);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState(false);
-    const { updateUserProfile } = useAuth();
+    const { updateUserProfile, logout } = useAuth();
+
+    const handleLogout = async () => {
+        try {
+            onClose(); // Ensure modal unmounts
+            await logout();
+        } catch (err) {
+            console.error("Failed to log out", err);
+        }
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -101,10 +110,17 @@ export default function EditProfileForm({ onClose, onUpdate, currentName, curren
                             <p className="text-gray-400 text-xs font-medium mt-1">Manage your Cortex AI account details</p>
                         </div>
                     </div>
-                    <button onClick={onClose} type="button"
-                        className="w-10 h-10 rounded-full flex items-center justify-center bg-white/60 border border-white/80 shadow-sm hover:bg-white hover:shadow-md transition-all duration-200">
-                        <X size={18} className="text-gray-400" />
-                    </button>
+                    <div className="flex items-center gap-3">
+                        <button onClick={handleLogout} type="button"
+                            className="w-10 h-10 bg-white/60 rounded-full flex items-center justify-center text-gray-400 hover:text-red-500 hover:bg-red-50 shadow-sm border border-white/80 transition-colors"
+                            title="Logout">
+                            <LogOut size={17} />
+                        </button>
+                        <button onClick={onClose} type="button"
+                            className="w-10 h-10 rounded-full flex items-center justify-center bg-white/60 border border-white/80 shadow-sm hover:bg-white hover:shadow-md transition-all duration-200">
+                            <X size={18} className="text-gray-400" />
+                        </button>
+                    </div>
                 </div>
 
                 {/* ── Form Body ── */}

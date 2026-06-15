@@ -3,7 +3,9 @@
     "allow": [
       "Bash(python3:*)",
       "Bash(npm run build:*)",
-      "Bash(npm run dev)"
+      "Bash(npm run dev)",
+      "Bash(pip3 install:*)",
+      "Bash(grep -rniE \"AIza[A-Za-z0-9_-]{20,}|sk-[A-Za-z0-9]{20,}|GEMINI_API_KEY|GOOGLE_API_KEY|getenv|os\\\\.environ|process\\\\.env\" --include=\"*.py\" --include=\"*.js\" --include=\"*.jsx\" --include=\"*.env*\" .)"
     ]
   }
 }

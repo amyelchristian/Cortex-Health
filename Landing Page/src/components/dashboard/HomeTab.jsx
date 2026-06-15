@@ -73,7 +73,12 @@ export default function HomeTab({ displayName, data }) {
     const navigate = useNavigate();
     const [showAssessment, setShowAssessment] = useState(false);
     const [latestPrediction, setLatestPrediction] = useState(null);
-    const activePrediction = latestPrediction || data?.latestAssessment?.prediction;
+
+    // Derive most recent assessment from prop data as the primary source of truth for persistence
+    const lastAssessmentFromProps = data?.latestAssessment?.prediction || data?.assessments?.[0]?.prediction;
+
+    // activePrediction is either the one JUST submitted in current component session OR the one from Firestore
+    const activePrediction = latestPrediction || lastAssessmentFromProps;
     const firstName = displayName?.split(' ')[0] || 'User';
     const now = new Date();
     const hour = now.getHours();

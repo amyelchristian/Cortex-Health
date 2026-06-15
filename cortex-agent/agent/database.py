@@ -106,6 +106,15 @@ class Database:
         except Exception:
             return False
 
+    def delete_document(self, user_id: str, doc_id: str) -> bool:
+        if self.mode != "firebase": return False
+        try:
+            self.db.collection('users').document(user_id).collection('documents').document(doc_id).delete()
+            return True
+        except Exception as e:
+            print(f"Error deleting document {doc_id} for user {user_id}: {e}")
+            return False
+
     # --- Reminders ---
     def add_reminder(self, user_id: str, rem_id: str, type: str, time: str, message: str):
         if self.mode != "firebase": return

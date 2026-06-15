@@ -87,6 +87,14 @@ async def get_documents_endpoint(user_id: str):
     docs = db.get_documents(user_id)
     return {"status": "success", "documents": docs}
 
+@app.delete("/documents/{doc_id}")
+async def delete_document_endpoint(doc_id: str, user_id: str):
+    """Deletes a medical document for the user."""
+    success = db.delete_document(user_id, doc_id)
+    if success:
+        return {"status": "success"}
+    raise HTTPException(status_code=500, detail="Failed to delete document.")
+
 @app.get("/dashboard")
 async def get_dashboard_endpoint(user_id: str):
     """Retrieves all health insights and recent history for the user."""

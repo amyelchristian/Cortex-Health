@@ -37,9 +37,7 @@ const Footer = () => {
                         <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-8">
                             <h4 className="font-outfit font-semibold text-white w-24">Resources:</h4>
                             <ul className="flex flex-wrap items-center gap-6">
-                                <li><a href="https://github.com/#readme" target="_blank" rel="noopener noreferrer" className="font-inter text-white/60 hover:text-mint-accent transition-colors text-sm">Documentation</a></li>
                                 <li><a href="https://cortex-agent-472595500035.us-central1.run.app/docs" target="_blank" rel="noopener noreferrer" className="font-inter text-white/60 hover:text-mint-accent transition-colors text-sm">API Docs</a></li>
-                                <li><a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="font-inter text-white/60 hover:text-mint-accent transition-colors text-sm">GitHub</a></li>
                             </ul>
                         </div>
 

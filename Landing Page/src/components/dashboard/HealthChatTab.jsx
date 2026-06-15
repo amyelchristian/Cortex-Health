@@ -70,6 +70,30 @@ export default function HealthChatTab() {
             const assessments = currentUser?.firestoreData?.assessments || [];
             const latestAssessment = assessments.length > 0 ? assessments[0] : null;
 
+            // Fetch recent documents for AI context
+            let latestDocs = "No uploaded reports yet.";
+            try {
+                const docRes = await axios.get(`${API_URL}/documents?user_id=${userId}`);
+                if (docRes.data && docRes.data.documents && docRes.data.documents.length > 0) {
+                    // Send the summaries and findings of the 3 most recently uploaded documents
+                    latestDocs = docRes.data.documents.slice(0, 3).map(d => ({
+                        title: d.title,
+                        category: d.category,
+                        upload_date: d.date,
+                        ai_summary: d.summary,
+                        key_findings: d.key_findings
+                    }));
+                }
+            } catch (e) {
+                console.warn("Failed to fetch documents for chat context");
+            }
+
+            // Combine both vitals and documents to pass through the existing context payload channel
+            const enhancedContext = {
+                vitals_and_risk_assessment: latestAssessment || "No assessments taken yet.",
+                clinical_documents_and_lab_reports: latestDocs
+            };
+
             // Only send the history of the current ACTIVE isolated chat session
             const historyPayload = activeSession.messages
                 .filter(m => m.role === 'user' || m.role === 'model') // Filter only strict allowed roles
@@ -78,7 +102,7 @@ export default function HealthChatTab() {
             const res = await axios.post(`${API_URL}/chat`, {
                 user_id: userId,
                 message: userMsg,
-                latest_assessment: latestAssessment,
+                latest_assessment: enhancedContext, // We pass the bundled context here
                 chat_history: historyPayload
             });
             updateSession({ role: 'model', content: res.data.response });
